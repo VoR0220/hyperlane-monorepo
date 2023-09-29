@@ -173,7 +173,8 @@ abstract contract AbstractOptimisticIsm is IOptimisticIsm, OwnableUpgradeable {
     function _isWatcher(address watcher) internal view returns (bool) {
         (address[] memory watchers, ) = watchersAndThreshold();
         uint i;
-        for (; i < watchers.length; ) {
+        uint len = watchers.length;
+        for (; i < len; ) {
             if (watchers[i] == watcher) return true;
             unchecked {
                 ++i; // gas optimization
